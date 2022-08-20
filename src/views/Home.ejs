@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <title>weekly budget</title>
+    <link rel="stylesheet"  href="/css/home.css">
+</head>
+
+<body>
+    <main class="main">
+
+    
+    <h1 class="title">Weekly Budget Administrator</h1>
+    <hr>
+    <section id="formulario" >
+        <article class="mostrarFormulario">
+            <ul class="errores"></ul>
+            <form class="form" action="/movies/create" method="POST">
+                <label for="concept">Concept </label>
+                <div class="input_container"><input class="input-style" type="text" name="concept" id="concept" ></div>
+                <label for="date">date</label>
+                <div class="input_container"><input class="input-style" type="date" name="date" id="date" ></div>
+                <label for="type">Type</label>
+                <div class="input_container">
+                    <select name="type" id="type" >
+                        <option value="" disabled selected>- select at Type - </option>
+                        <option value="Ingreso" selected>- Ingreso - </option>
+                        <option value="Retiro" selected>- Retiro - </option>
+                        <label for="awards">Type </label>
+                    </select>
+                    <br>
+                </div>
+                <div class="input_container"><input class="input-style" type="number" name="amount" id="amount" placeholder="Amount"></div>
+                <br>
+                <div class="submits"> <button class="botonAgregar" type="submit">submit</button>
+                
+                <a  class="botonVolver" href="/movies">movements</a></div>
+            </form>
+        </article>
+    </section>
+    <section id="formulario">
+        <!-- Form Login -->
+        <article class="mostrarFormulario">
+            <form class="form" action="/usuario/login" method="POST">
+                <div class="input_container">
+                    <input type="email" class="input-style" name="email" id="email" placeholder="Ingrese su email">
+                    <small id="error_email" class="error-message"><%= (locals.errors && errors.email)? errors.email.msg : "" %></small>
+                </div>
+                <div class="input_container">
+                    <input type="password" class="input-style" name="password" id="password" placeholder="Ingrese una contraseña">
+                    <small id="error_pass" class="error-message"><%= (locals.errors && errors.password)? errors.password.msg : "" %></small>
+                </div>
+                <div class="custom-msg">
+                    <small id="error_custom" class="error-message"><%= (locals.errors && errors.custom)? errors.custom.msg : "" %> </small>
+                </div>
+                <span><a href="register.html">¿Olvidaste la contraseña? Click aquí </a></span>
+                <div class="input_container">
+                <br>
+                <label for="recordar"><a href=""></a>
+                <input type="checkbox" name="recordar" id="recordar">Recordarme</label>                    
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-submit">Iniciar sesion</button>
+                </div>
+                    <span><a href="/usuario/registrarse">No tengo cuenta</a></span>
+            </form>
+        </article>
+        <!-- Form Register -->
+        <form action="">
+
+        </form>
+    </section>
+</main>
+</body>
+</html>
