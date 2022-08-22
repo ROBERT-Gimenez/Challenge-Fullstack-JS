@@ -60,7 +60,7 @@ const ApiTransactions = {
             .catch((error) => console.log(error));
     },
     create: (req, res) => {
-        transactions.create({
+        db.transactions.create({
             concept: req.body.concept,
             date: req.body.date,
             type: req.body.type,
@@ -94,7 +94,7 @@ const ApiTransactions = {
     },
     update: (req, res) => {
         let transactionsId = req.params.id;
-        transactions.update(
+        db.transactions.update(
             {
                 concept: req.body.concept,
                 date: req.body.date,
@@ -133,7 +133,7 @@ const ApiTransactions = {
     },
     destroy: (req, res) => {
         let transactionsId = req.params.id;
-        transactions.destroy({where: {id: transactionsId}, force: true})
+        db.transactions.destroy({where: {id: transactionsId}, force: true})
             .then((confirm) => {
                 let respuesta;
                 if (confirm) {

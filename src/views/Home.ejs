@@ -19,7 +19,7 @@
     <section id="formulario" >
         <article class="mostrarFormulario">
             <ul class="errores"></ul>
-            <form class="form" action="/movies/create" method="POST">
+            <form class="form" action="api/transactions/create" method="POST">
                 <label for="concept">Concept </label>
                 <div class="input_container"><input class="input-style" type="text" name="concept" id="concept" ></div>
                 <label for="date">date</label>
@@ -45,7 +45,7 @@
     <section id="formulario">
         <!-- Form Login -->
         <article class="mostrarFormulario">
-            <form class="form" action="/usuario/login" method="POST">
+            <form class="form" action="/user/login" method="POST">
                 <div class="input_container">
                     <input type="email" class="input-style" name="email" id="email" placeholder="Ingrese su email">
                     <small id="error_email" class="error-message"><%= (locals.errors && errors.email)? errors.email.msg : "" %></small>
@@ -68,9 +68,10 @@
                 </div>
                     <span><a href="/usuario/registrarse">No tengo cuenta</a></span>
             </form>
+            <br>
         
         <!-- Form Register -->
-        <form class="form" action="/usuario/registrarse" method="POST" class="form-register registro">
+        <form class="form" action="/user/register" method="POST" class="form-register registro">
             <label for="name">Nombre y Apellido</label>
             <div class="input_container">
                     <input type="text" name="name" id="name" class="input-style" placeholder="Ingrese su nombre y apellido" value="<%= (locals.old && old.name)? old.name : "" %>">
@@ -91,8 +92,8 @@
                     <%= (locals.errors && errors.email)? errors.email.msg : "" %>
                 </small>
             </div>
+            <label for="password">Ingrese una contraseña</label>
             <div class="input_container">
-                <label for="password">Ingrese una contraseña</label>
                 <input type="password" name="password" id="password" class="input-style" placeholder="Ingrese una contraseña " value="<%= (locals.old && old.password)? old.password : "" %>">
                 <span class="icon__alert">
                     <i class="fa-solid fa-circle-exclamation"></i>
@@ -101,8 +102,8 @@
                     <%= (locals.errors && errors.password)? errors.password.msg : "" %>
                 </small>
             </div>
+            <label for="password2">Confirme su contraseña</label>
             <div class="input_container">
-                <label for="password2">Confirme su contraseña</label>
                 <input type="password" name="password2" id="password2" placeholder="Reingrese su contraseña" class="input-style">
                 <span class="icon__alert">
                     <i class="fa-solid fa-circle-exclamation"></i>

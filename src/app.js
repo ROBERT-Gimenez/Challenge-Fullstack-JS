@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 
 /* Routes */
 const indexRouter = require("../src/Routes/indexRouter")
+const userRouter = require('../src/Routes/userRouter');
 const apiAdmin = require('./Routes/apiRoutes')
 
 
@@ -41,6 +42,8 @@ app.use(express.json());
 
 
 app.use ('/', indexRouter);
+app.use('/user', userRouter);
+
 
 /// APIS Routes ///
 

@@ -22,7 +22,7 @@ router.get('/transaction/:id', TransactionsController.detail);
 //filter transactions. Puede colocar desde 1 hasta 10
 router.get('/transactions/:id', TransactionsController.recomended);
 //Agregar una película
-router.post('/create', TransactionsController.create);
+router.post('/transactions/create', TransactionsController.create);
 //Modificar una película
 router.put('/transaction/update/:id', TransactionsController.update);
 //Eliminar una película
