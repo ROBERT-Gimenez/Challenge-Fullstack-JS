@@ -17,14 +17,12 @@ let submit = qse("#submit");
 let inputs = [concept,date,amount];
 
 form.addEventListener('submit' , function (event){
-    event.preventDefault()
     let error = false;
     inputs.forEach(element => { if(element.value ==""){
         error = true
     }})
     if(error == false){
         window.location.reload
-        event.submit()
         alert("add operation")
     }else{
         event.preventDefault()

@@ -33,11 +33,19 @@
     padding: 1rem;
     display: none;
   }
+  thead{
+    display: flex;
+    align-items: center;
+    justify-content: inherit;
+    align-self: normal;
+  }
   tr{
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 4rem;
+      gap: 0.5rem;
+      width: 95%;
+      font-size: 10px;
+
     }
       h1.title{
           text-align: center;
@@ -159,6 +167,11 @@
   @media(min-width:530px){
     .formulario, .mostrarFormulario{
         width: 70%;
+  }
+  tr{
+    justify-content: center;
+    gap: 2rem;
+    font-size: 15px;
   }
   h1.title{
     font-size: 30px;
