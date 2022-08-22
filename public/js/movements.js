@@ -4,16 +4,34 @@ function qse(element) {
 function qsAll(element) {
     return document.querySelectorAll(element)
 };
-
-
+let form =qse("#operation")
+let concept = qse("#concept");
+let date = qse("#date");
+let amount = qse("#amount");
 let movements = qse("#movements");
 let operation = qse("#operation");
 let general = qse("#general_list");
 let add = qse("#links");
 let submit = qse("#submit");
-submit.addEventListener('click' , (e) =>{
-    window.location.reload
-    alert("add operation")
+
+let inputs = [concept,date,amount];
+
+form.addEventListener('submit' , function (event){
+    event.preventDefault()
+    let error = false;
+    inputs.forEach(element => { if(element.value ==""){
+        error = true
+    }})
+    if(error == false){
+        window.location.reload
+        event.submit()
+        alert("add operation")
+    }else{
+        event.preventDefault()
+        alert("check the fields")
+
+    }   
+    ;
 })
 movements.addEventListener('click' , (e) =>{
     e.preventDefault()
@@ -29,4 +47,6 @@ add.addEventListener('click' , (e) =>{
 
 
 })
+
+
 

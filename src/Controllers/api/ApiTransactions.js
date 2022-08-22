@@ -44,7 +44,6 @@ const ApiTransactions = {
             date: req.body.date,
             type: req.body.type,
             amount: req.body.amount,
-            users_id: req.session.user.id,
         }) 
             .then((confirm) => {
                 let respuesta;
@@ -79,7 +78,6 @@ const ApiTransactions = {
                 date: req.body.date,
                 type: req.body.type,
                 amount: req.body.amount,
-                users_id: req.session.user.id,
             },
             {
                 where: {id: transactionsId},
