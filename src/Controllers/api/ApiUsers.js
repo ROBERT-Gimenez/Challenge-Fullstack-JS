@@ -6,9 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { Op } = require("sequelize");
 
-//---------------------------
-//Dentro del usersAPIController uso las dos forma de poder llamar a nuestros modelo
-//----------------------------------
+
 module.exports = {
 users : (req, res) => {
     db.users.findAll()
@@ -51,7 +49,6 @@ userCreate:(req,res)=>{
                 email: req.body.email,
                 rol_id: 1,
                 password: bcrypt.hashSync(req.body.password , 10),
-                phone: req.body.phone
             })
             .then((confirm) => {
                 let respuesta;
@@ -83,9 +80,7 @@ let userId = req.params.id;
         db.users.update(
             {
                 first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                rating: req.body.rating,
-                favorite_movie_id: req.body.favorite_movie_id,
+                phone: req.body.phone,
             },
             {
                 where: {id: userId},

@@ -3,8 +3,7 @@ const db = require('../../database/models');
 const sequelize = db.sequelize;
 const {Op} = require('sequelize');
 const moment = require('moment');
-
-const Transactions = db.Transactions;
+const { user } = require('./ApiUsers');
 
 const ApiTransactions = {
     list: (req, res) => {
@@ -38,35 +37,15 @@ const ApiTransactions = {
             res.json(respuesta);
         });
     },
-    recomended: (req, res) => {
-        db.transactions.findAll({
-            include: ['users'],
-            where: {
-                date: {[db.Sequelize.Op.gte]: req.params.date},
-            },
-            order: [['date', 'DESC']],
-        })
-            .then((transactions) => {
-                let respuesta = {
-                    meta: {
-                        status: 200,
-                        total: transactions.length,
-                        url: 'api/transactions/recomended/:date',
-                    },
-                    data: transactions,
-                };
-                res.json(respuesta);
-            })
-            .catch((error) => console.log(error));
-    },
     create: (req, res) => {
+       
         db.transactions.create({
             concept: req.body.concept,
             date: req.body.date,
             type: req.body.type,
             amount: req.body.amount,
-            users_id: req.session.id,
-        })
+            users_id: req.session.user.id,
+        }) 
             .then((confirm) => {
                 let respuesta;
                 if (confirm) {
@@ -88,8 +67,8 @@ const ApiTransactions = {
                         data: confirm,
                     };
                 }
-                res.json(respuesta);
-            })
+/*                 res.redirect(respuesta);
+ */            })
             .catch((error) => res.send(error));
     },
     update: (req, res) => {
@@ -155,7 +134,7 @@ const ApiTransactions = {
                         data: confirm,
                     };
                 }
-                res.json(respuesta);
+                res.redirect('/movements');
             })
             .catch((error) => res.send(error));
     },

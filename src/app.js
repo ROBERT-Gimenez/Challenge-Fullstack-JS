@@ -7,12 +7,14 @@ require('dotenv').config();
 const PORT = process.env.PORT  ||  4000;
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cookieSession = require('../src/middlewares/cookieSession');
 
 
 /* Routes */
 const indexRouter = require("../src/Routes/indexRouter")
 const userRouter = require('../src/Routes/userRouter');
-const apiAdmin = require('./Routes/apiRoutes')
+const apiAdmin = require('./Routes/apiRoutes');
 
 
 
@@ -28,11 +30,13 @@ app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 app.use(bodyParser.json()) 
 app.use(express.json());
+app.use(cookieParser());
+app.use(cookieSession);
 
 
 /* session */
 app.use(session({
-    secret:"weekly budget",
+    secret:"AlkemyCookie",
     resave: false,
     saveUninitialized: true,
     cookie: {}

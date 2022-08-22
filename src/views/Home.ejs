@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../js/home.js" defer></script>
 
     
     <title>weekly budget</title>
@@ -16,36 +17,11 @@
     
     <h1 class="title">Weekly Budget Administrator</h1>
     <hr>
-    <section id="formulario" >
-        <article class="mostrarFormulario">
-            <ul class="errores"></ul>
-            <form class="form" action="api/transactions/create" method="POST">
-                <label for="concept">Concept </label>
-                <div class="input_container"><input class="input-style" type="text" name="concept" id="concept" ></div>
-                <label for="date">date</label>
-                <div class="input_container"><input class="input-style" type="date" name="date" id="date" ></div>
-                <label for="type">Type</label>
-                <div class="input_container">
-                    <select name="type" id="type" >
-                        <option value="" disabled selected>- select at Type - </option>
-                        <option value="Ingreso" selected>- Ingreso - </option>
-                        <option value="Retiro" selected>- Retiro - </option>
-                        <label for="awards">Type </label>
-                    </select>
-                    <br>
-                </div>
-                <div class="input_container"><input class="input-style" type="number" name="amount" id="amount" placeholder="Amount"></div>
-                <br>
-                <div class="submits"> <button class="botonAgregar" type="submit">submit</button>
-                
-                <a  class="botonVolver" href="/movies">movements</a></div>
-            </form>
-        </article>
-    </section>
+   
     <section id="formulario">
         <!-- Form Login -->
         <article class="mostrarFormulario">
-            <form class="form" action="/user/login" method="POST">
+            <form class="form" id="login_form" action="/user/login" method="POST">
                 <div class="input_container">
                     <input type="email" class="input-style" name="email" id="email" placeholder="Ingrese su email">
                     <small id="error_email" class="error-message"><%= (locals.errors && errors.email)? errors.email.msg : "" %></small>
@@ -57,7 +33,7 @@
                 <div class="custom-msg">
                     <small id="error_custom" class="error-message"><%= (locals.errors && errors.custom)? errors.custom.msg : "" %> </small>
                 </div>
-                <span><a href="register.html">¿Olvidaste la contraseña? Click aquí </a></span>
+                <span><a href="/">¿Olvidaste la contraseña? Click aquí </a></span>
                 <div class="input_container">
                 <br>
                 <label for="recordar"><a href=""></a>
@@ -66,12 +42,12 @@
                 <div class="btn-container">
                     <button type="submit" class="btn btn-submit">Iniciar sesion</button>
                 </div>
-                    <span><a href="/usuario/registrarse">No tengo cuenta</a></span>
+                    <span><a href="" id="link_register">No tengo cuenta</a></span>
             </form>
             <br>
         
         <!-- Form Register -->
-        <form class="form" action="/user/register" method="POST" class="form-register registro">
+        <form class="form" action="/user/register" id="register_form" method="POST" class="form-register registro">
             <label for="name">Nombre y Apellido</label>
             <div class="input_container">
                     <input type="text" name="name" id="name" class="input-style" placeholder="Ingrese su nombre y apellido" value="<%= (locals.old && old.name)? old.name : "" %>">
@@ -84,7 +60,7 @@
             </div>
             <label for="email">Correo electrónico</label>
             <div class="input_container">
-                <input type="email" name="email" id="email" class="input-style" placeholder="Ingrese su email" value="<%= (locals.old && old.email)? old.email : "" %>">
+                <input type="email" name="email" id="email_Register" class="input-style" placeholder="Ingrese su email" value="<%= (locals.old && old.email)? old.email : "" %>">
                 <span class="icon__alert">
                     <i class=""></i>
                 </span>
@@ -94,7 +70,7 @@
             </div>
             <label for="password">Ingrese una contraseña</label>
             <div class="input_container">
-                <input type="password" name="password" id="password" class="input-style" placeholder="Ingrese una contraseña " value="<%= (locals.old && old.password)? old.password : "" %>">
+                <input type="password" name="password" id="password_Register" class="input-style" placeholder="Ingrese una contraseña " value="<%= (locals.old && old.password)? old.password : "" %>">
                 <span class="icon__alert">
                     <i class="fa-solid fa-circle-exclamation"></i>
                 </span>
@@ -123,7 +99,7 @@
                 <button type="submit" class="btn btn-submit">Registrarme</button>
             </div>
             <div class="input_container">
-                <span id="span" class="login"><a id="link" href="/usuario/login">Ya tengo cuenta</a></span>
+                <span id="span" class="login"><a id="link_login" href="/">Ya tengo cuenta</a></span>
                 <small class="" style="font-size: 20px; text-align: center;" id="submitError"></small>
             </div>
         </form>

@@ -4,17 +4,31 @@ let bcrypt =require('bcryptjs');
 const db =require('../database/models');
 const fs = require('fs');
 const path = require('path');
-const removeAccents = (str) => {return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");}
-/* const db = require('../database/models')
- */
+
+
 module.exports = {
+    movements:(req, res)=> {
+        db.transactions.findAll()
+        .then((movements) => {
+
+        
+        res.render('movements' ,{
+          title:"move",
+          toThousand,
+          movements,
+          session: req.session
+
+          })
+        }).catch((err) => {res.send(err)})
+      },
     index: (req, res)=> {
           res.render('home' ,{
             title:"move",
 			toThousand,
+            session: req.session
+
             })  
         },
-
     processLogin: (req, res) => {
         let errors = validationResult(req);
         
@@ -33,7 +47,7 @@ module.exports = {
             
             if(req.body.recordar){
                 const TIME_IN_MILISECONDS = 60000;
-                res.cookie('Bikemastercookie', req.session.user, {
+                res.cookie('AlkemyCookie', req.session.user, {
                     expires: new Date(Date.now() + TIME_IN_MILISECONDS),
                     httpOnly: true,
                     secure: true
@@ -41,14 +55,12 @@ module.exports = {
             }
 
             res.locals.user = req.session.user
-
-            res.redirect('/')
+            console.log(req.session.user.id)
+            res.redirect('/movements')
         }).catch(( error )=> {console.log(error)})
         }else{
-            
-            res.render('/' , {
+            res.render('home' , {
                 titulo: "Login",
-                css: 'login.css',
                 errors: errors.mapped(),
                 session: req.session
             })
@@ -58,7 +70,7 @@ module.exports = {
         req.session.destroy();
 
         if(req.cookies.Bikemastercookie){
-            res.cookie('Bikemastercookie', "", { maxAge: -1 })
+            res.cookie('AlkemyCookie', "", { maxAge: -1 })
         }
 
         res.redirect('/')
@@ -78,8 +90,7 @@ module.exports = {
         }else{
             //Código para mostrar errores
             res.render('home', {
-                titulo: "Registro",
-                css: 'register.css',
+                titulo: "Register",
                 errors: errors.mapped(),
                 session: req.session,
                 old: req.body

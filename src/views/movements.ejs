@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <!-- Styles CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../js/movements.js" defer></script>
+
+    
+    <title>weekly budget</title>
+    <link rel="stylesheet"  href="/css/home.css">
+</head>
+
+<body>
+    <main class="main">
+
+    
+    <h1 class="title">Weekly Budget Administrator</h1>
+    <hr>
+    <section id="formulario" >
+        <article class="mostrarFormulario">
+            <ul class="errores"></ul>
+            <form class="form" id="operation" action="api/transactions/create" method="POST">
+                <label for="concept">Concept </label>
+                <div class="input_container"><input class="input-style" type="text" name="concept" id="concept" ></div>
+                <label for="date">date</label>
+                <div class="input_container"><input class="input-style" type="date" name="date" id="date" ></div>
+                <label for="type">Type</label>
+                <div class="input_container">
+                    <select name="type" id="type" >
+                        <option value="" disabled selected>- select at Type - </option>
+                        <option value="Ingreso" selected>- Ingreso - </option>
+                        <option value="Retiro" selected>- Retiro - </option>
+                        <label for="awards">Type</label>
+                    </select>
+                    <br>
+                </div>
+                <div class="input_container"><input class="input-style" type="number" name="amount" id="amount" placeholder="Amount"></div>
+                <br>
+                <div class="submits"> <button class="botonAgregar" id="submit" type="submit">submit</button>
+                
+                <a  class="botonVolver" id="movements" href="/movements">movements</a></div>
+            </form>
+            <hr>
+            <main>
+       
+                <table class="form" id="general_list">
+                    <caption>Lista general movimientos</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Concept</th>
+                            <th scope="col" class="colum-price">date</th>
+                            <br>
+                            <th scope="col" class="no-mobile"></th>
+                            <th scope="col" class="colum-stock">type</th>
+                            <th scope="col" class="no-mobile">amount</th>
+                            <th id="add"><a id="links" href="/">add </a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% movements.forEach(product => { %>
+                            
+                            <td><%= product.concept %></td>
+                            <td class="colum-stock"><%= product.date.toDateString()%></td>
+                            <td class="colum-stock"><%= product.type %></td>
+                            <td class="no-mobile"><%- product.amount%></td>
+                            
+                            <td class="actions__buttons">
+                              <a href="/movements/<%= product.id %>" class="btn btn-success">
+                                <i id="edit" class="fa-solid fa-pen-to-square"></i>
+                              </a>
+                              <form action="api/transaction/delete/<%= product.id %>?_method=DELETE" method="post">
+                                <button class="erase" type="submit">
+                                  <i id="trash" class="fa-solid fa-trash-can"></i>
+                                </button>
+                              </form>
+                            </td>
+                          </tr>
+                        <% }) %>  
+                      </tbody>
+                </table>
+            </main>
+        </article>
+    </section>
+</main>
+</body>
+</html>

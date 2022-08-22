@@ -19,8 +19,6 @@ router.delete('/delete/:id', adminController.destroy);
 router.get('/transactions', TransactionsController.list);
 /* transaction detail */
 router.get('/transaction/:id', TransactionsController.detail);
-//filter transactions. Puede colocar desde 1 hasta 10
-router.get('/transactions/:id', TransactionsController.recomended);
 //Agregar una película
 router.post('/transactions/create', TransactionsController.create);
 //Modificar una película
